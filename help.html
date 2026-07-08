@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index,follow" />
+  <title>Help center — Draper: B2B Wholesale Pricing</title>
+  <meta name="description" content="Setup guide and per-feature documentation for Draper: wholesale pricing, quotes, net terms and a B2B buyer portal on the store you already run." />
+  <style>
+    :root {
+      --ink: #1f2328;
+      --muted: #57606a;
+      --accent: #7d2140;
+      --accent-soft: #f7ecf0;
+      --border: #d0d7de;
+      --bg: #ffffff;
+      --subtle: #f6f8fa;
+      --sidebar-w: 288px;
+    }
+    * { box-sizing: border-box; }
+    html {
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Helvetica, Arial, sans-serif;
+    }
+    a { color: var(--accent); }
+
+    /* ---- Layout ---- */
+    .layout {
+      display: grid;
+      grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+    }
+    .sidebar {
+      position: sticky;
+      top: 0;
+      align-self: start;
+      height: 100vh;
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      background: var(--subtle);
+      padding: 22px 16px 28px;
+    }
+    .content { padding: 40px 40px 96px; }
+    .content-inner { max-width: 820px; margin: 0 auto; }
+
+    /* ---- Brand / sidebar header ---- */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      color: var(--ink);
+      margin: 4px 6px 20px;
+    }
+    .brand-mark {
+      width: 38px; height: 38px;
+      border-radius: 9px;
+      overflow: hidden;
+      flex: none;
+      box-shadow: 0 1px 2px rgba(0,0,0,.12);
+    }
+    .brand-mark svg { display: block; width: 100%; height: 100%; }
+    .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+    .brand-text strong { font-size: 16px; letter-spacing: -0.01em; }
+    .brand-text small { color: var(--muted); font-size: 12px; }
+
+    /* ---- Nav ---- */
+    .nav { display: flex; flex-direction: column; }
+    .nav-group {
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 11px;
+      margin: 18px 10px 4px;
+    }
+    .nav a {
+      display: block;
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 14.5px;
+      padding: 6px 10px;
+      border-radius: 7px;
+      border-left: 2px solid transparent;
+    }
+    .nav a:hover { background: var(--accent-soft); }
+    .nav a.active {
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+      border-left-color: var(--accent);
+    }
+    .nav-help {
+      margin: 26px 10px 0;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* ---- Top bar (mobile only) ---- */
+    .topbar {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar .brand-mark { width: 30px; height: 30px; border-radius: 7px; }
+    .topbar-title { font-weight: 600; letter-spacing: -0.01em; }
+    .menu-toggle {
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+      background: var(--subtle);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 12px;
+      color: var(--ink);
+    }
+
+    /* ---- Typography ---- */
+    .eyebrow {
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 12px;
+      margin: 0 0 6px;
+    }
+    h1 {
+      font-size: 32px; line-height: 1.2;
+      margin: 0 0 10px; letter-spacing: -0.02em;
+    }
+    .lede { font-size: 18px; color: var(--muted); margin: 0 0 8px; }
+    h2 {
+      font-size: 23px; line-height: 1.25;
+      margin: 0 0 12px; letter-spacing: -0.01em;
+    }
+    h3 { font-size: 17px; margin: 26px 0 6px; }
+    section { scroll-margin-top: 76px; }
+    section + section {
+      margin-top: 30px;
+      padding-top: 34px;
+      border-top: 1px solid var(--border);
+    }
+    p, li { color: var(--ink); }
+    ul, ol { padding-left: 22px; }
+    li { margin: 6px 0; }
+    li > ul { margin-top: 6px; }
+    code {
+      background: var(--subtle);
+      border: 1px solid var(--border);
+      padding: 1px 5px;
+      border-radius: 5px;
+      font-size: 0.88em;
+    }
+    strong { color: var(--ink); }
+
+    /* ---- Tables ---- */
+    .table-wrap { overflow-x: auto; margin: 16px 0; }
+    table {
+      width: 100%; border-collapse: collapse;
+      font-size: 14.5px; min-width: 480px;
+    }
+    th, td {
+      text-align: left; vertical-align: top;
+      padding: 9px 12px; border: 1px solid var(--border);
+    }
+    th { background: var(--subtle); font-weight: 600; }
+
+    /* ---- Callouts ---- */
+    .callout {
+      background: var(--accent-soft);
+      border: 1px solid #eccdd7;
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin: 18px 0;
+      font-size: 15px;
+    }
+    .callout p { margin: 0; }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.02em;
+      padding: 1px 7px; border-radius: 999px;
+      vertical-align: middle;
+      margin-left: 6px;
+    }
+
+    /* ---- FAQ ---- */
+    .faq-cat {
+      color: var(--accent);
+      font-weight: 600; font-size: 13px;
+      letter-spacing: 0.02em; text-transform: uppercase;
+      margin: 28px 0 2px;
+    }
+    .faq h3 { margin: 18px 0 4px; }
+
+    .footnote {
+      margin-top: 44px; padding-top: 16px;
+      border-top: 1px solid var(--border);
+      color: var(--muted); font-size: 13px; font-style: italic;
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      .topbar { display: flex; }
+      .sidebar {
+        position: fixed; top: 0; left: 0; bottom: 0;
+        width: 280px; height: 100vh; z-index: 40;
+        transform: translateX(-100%);
+        transition: transform 0.22s ease;
+        box-shadow: 0 0 40px rgba(0,0,0,.18);
+      }
+      .sidebar.open { transform: translateX(0); }
+      .backdrop {
+        display: none; position: fixed; inset: 0;
+        background: rgba(0,0,0,.35); z-index: 35;
+      }
+      .backdrop.show { display: block; }
+      .content { padding: 24px 20px 72px; }
+      h1 { font-size: 27px; }
+      .lede { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰ Menu</button>
+    <span class="brand-mark" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200"><rect width="1200" height="1200" fill="#7D2140"/><path fill="#FFF" fill-rule="evenodd" d="M305,445 L480,270 H565 A330,330 0 0 1 565,930 H305 Z M455,420 H565 A180,180 0 0 1 565,780 H455 Z M380,512 m-45,0 a45,45 0 1 0 90,0 a45,45 0 1 0 -90,0"/></svg>
+    </span>
+    <span class="topbar-title">Draper Help</span>
+  </header>
+
+  <div class="backdrop"></div>
+
+  <div class="layout" id="top">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200"><rect width="1200" height="1200" fill="#7D2140"/><path fill="#FFF" fill-rule="evenodd" d="M305,445 L480,270 H565 A330,330 0 0 1 565,930 H305 Z M455,420 H565 A180,180 0 0 1 565,780 H455 Z M380,512 m-45,0 a45,45 0 1 0 90,0 a45,45 0 1 0 -90,0"/></svg>
+        </span>
+        <span class="brand-text"><strong>Draper</strong><small>Help center</small></span>
+      </a>
+      <nav class="nav" aria-label="Help topics">
+        <p class="nav-group">Getting started</p>
+        <a href="#overview">Overview</a>
+        <a href="#getting-started">Getting started</a>
+        <a href="#storefront-setup">Storefront setup</a>
+        <p class="nav-group">Pricing &amp; checkout</p>
+        <a href="#price-lists">Price lists</a>
+        <a href="#checkout-terms">Checkout terms &amp; shipping</a>
+        <a href="#discount-codes">Discount codes</a>
+        <p class="nav-group">Quotes</p>
+        <a href="#quotes">Quotes &amp; RFQ</a>
+        <p class="nav-group">Catalog &amp; buyer tools</p>
+        <a href="#catalog-control">Catalog control</a>
+        <a href="#buyer-tools">Buyer tools</a>
+        <p class="nav-group">Reference</p>
+        <a href="#faq">FAQ &amp; troubleshooting</a>
+        <a href="#permissions">Permissions &amp; data</a>
+      </nav>
+      <div class="nav-help">
+        Need a hand?<br />
+        <a href="mailto:anikale@gmail.com">anikale@gmail.com</a>
+      </div>
+    </aside>
+
+    <main class="content">
+      <div class="content-inner">
+        <p class="eyebrow">Draper: B2B Wholesale Pricing</p>
+        <h1>Help center</h1>
+        <p class="lede">Wholesale pricing, quotes, net payment terms and a B2B
+          buyer portal — on the store you already run.</p>
+
+        <!-- ============ OVERVIEW ============ -->
+        <section id="overview">
+          <h2>Overview</h2>
+          <p>Draper layers wholesale pricing on top of your existing store. You
+            don't migrate to a separate B2B storefront and you don't rebuild your
+            catalog.</p>
+          <ul>
+            <li><strong>You tag your wholesale customers</strong> (or select them
+              by name) and put them on a <strong>price list</strong>.</li>
+            <li>A tagged customer, once logged in, sees <strong>their own
+              prices</strong> everywhere — product pages, collection grids, cart
+              and checkout.</li>
+            <li><strong>Everyone else sees your normal retail store.</strong>
+              Guests and untagged customers never see wholesale prices (unless you
+              hand out a <a href="#discount-codes">discount code</a>).</li>
+          </ul>
+          <p>Under the hood the wholesale discount is applied by Shopify's own
+            discount engine, so wholesale prices are correct in the cart, at
+            checkout, and on the order — not just a number painted on the page.</p>
+          <div class="callout">
+            <p><strong>One thing to know up front:</strong> Draper's pricing is
+              <strong>discount-only</strong>. A price list makes things
+              <em>cheaper</em> than retail. If you set a fixed wholesale price that
+              is <em>higher</em> than retail, Draper leaves the retail price in
+              place — it never marks an item up. See
+              <a href="#fixed-prices">Fixed prices are discount-only</a>.</p>
+          </div>
+          <p>New here? Start with <a href="#getting-started">Getting started</a>,
+            which takes you from install to a live wholesale price in about ten
+            minutes.</p>
+        </section>
+
+        <!-- ============ GETTING STARTED ============ -->
+        <section id="getting-started">
+          <h2>Getting started</h2>
+
+          <h3>Step 1 — Install and pick a plan</h3>
+          <ol>
+            <li>Install Draper from the Shopify App Store.</li>
+            <li>On first open, choose the <strong>Draper Standard</strong> plan —
+              <strong>$29/month with a 14-day free trial</strong>. You're not
+              charged during the trial, and you can uninstall any time before it
+              ends.</li>
+            <li>After approving the plan you land on the Draper dashboard, which
+              has a <strong>Get started</strong> guide mirroring the steps below.</li>
+          </ol>
+
+          <h3>Step 2 — Create your first price list</h3>
+          <ol>
+            <li>Open <strong>Price lists → Create price list</strong>.</li>
+            <li>Give it a name, e.g. <em>Wholesale</em>.</li>
+            <li>Under <strong>Customer targeting</strong>, add the customer tag
+              that identifies your wholesale buyers — e.g. <code>wholesale</code>.</li>
+            <li>Under <strong>Default pricing</strong>, set a list-wide discount,
+              e.g. <strong>20% off</strong>.</li>
+            <li><em>(Optional)</em> add volume discounts, checkout terms, and more
+              — you can always come back.</li>
+            <li><strong>Save.</strong> New price lists are <strong>Active</strong>
+              by default.</li>
+          </ol>
+
+          <h3>Step 3 — Enable storefront pricing</h3>
+          <p>Creating a list defines the rules; enabling pushes them to Shopify's
+            discount engine so they apply at cart and checkout.</p>
+          <ul>
+            <li>After saving, click <strong>Enable</strong> on the price-list
+              index banner, or use the dashboard's <strong>Enable storefront
+              pricing</strong> card.</li>
+            <li>The dashboard's <strong>Storefront health</strong> card turns green
+              once pricing is live. You only do this once.</li>
+          </ul>
+
+          <h3>Step 4 — Show wholesale prices in your theme</h3>
+          <p>The pricing engine works after Step 3. To also show buyers their
+            price <em>on the storefront</em>, turn on Draper's theme pieces from
+            the dashboard's <strong>Storefront features</strong> section — each
+            card deep-links into your theme editor. Enable at least the product
+            price block, collection prices, the quote drawer, and the cart blocks.
+            Full detail in <a href="#storefront-setup">Storefront setup</a>.</p>
+
+          <h3>Step 5 — Tag a customer and see it work</h3>
+          <ol>
+            <li>In Shopify admin, add your tag (e.g. <code>wholesale</code>) to a
+              test customer.</li>
+            <li>Log in to your storefront as that customer and open a product page
+              — you should see the wholesale panel, a retail strikethrough, "Save
+              20%", and the volume ladder.</li>
+            <li>Log out and confirm the same page shows plain retail.</li>
+          </ol>
+
+          <h3>Billing and the free trial</h3>
+          <p>Draper uses Shopify <strong>Managed Pricing</strong>, billed on your
+            normal Shopify invoice. The plan is <strong>Draper Standard,
+            $29/month, with a 14-day free trial</strong>. Every feature is
+            included — no add-ons or usage fees. Uninstalling cancels the
+            subscription.</p>
+        </section>
+
+        <!-- ============ STOREFRONT SETUP ============ -->
+        <section id="storefront-setup">
+          <h2>Storefront setup</h2>
+          <p>Draper's pricing engine works as soon as you enable storefront
+            pricing. Everything a buyer <em>sees</em> on the storefront comes from
+            Draper's <strong>theme pieces</strong>, which you turn on in your theme
+            editor.</p>
+
+          <h3>App embeds vs. app blocks</h3>
+          <ul>
+            <li><strong>App embeds</strong> run site-wide and are toggled in the
+              theme editor's <strong>App embeds</strong> panel, then
+              <strong>Save</strong>.</li>
+            <li><strong>App blocks</strong> are placed on a specific template
+              (product, cart, or a page) with <strong>Add block</strong>, then
+              <strong>Save</strong>.</li>
+          </ul>
+          <p>You don't need to remember which is which — on the dashboard, the
+            <strong>Storefront features</strong> cards each open your theme editor
+            at exactly the right spot. Click, then save the theme.</p>
+          <div class="callout">
+            <p><strong>Quotes need the Quote drawer.</strong> Every "Add to quote"
+              button opens the <strong>Quote drawer</strong> embed. If that embed
+              is off, the buttons silently do nothing. Turn it on first if you use
+              quotes at all.</p>
+          </div>
+
+          <h3>The minimum set to get going</h3>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Turn on</th><th>Type</th><th>Where</th></tr></thead>
+            <tbody>
+              <tr><td>Wholesale price on product pages</td><td>App block</td><td>Add to your <strong>Product</strong> template</td></tr>
+              <tr><td>Wholesale prices on collection pages</td><td>App embed</td><td>App embeds panel</td></tr>
+              <tr><td>Quote drawer</td><td>App embed</td><td>App embeds panel</td></tr>
+              <tr><td>Wholesale order minimum</td><td>App block</td><td>Add to your <strong>Cart</strong> template</td></tr>
+              <tr><td>Net-terms checkout button</td><td>App block</td><td>Add to your <strong>Cart</strong> template</td></tr>
+            </tbody>
+          </table></div>
+
+          <h3>Full reference</h3>
+          <p><strong>Wholesale pricing &amp; checkout</strong></p>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Feature</th><th>Type</th><th>Placement</th><th>What it does</th></tr></thead>
+            <tbody>
+              <tr><td>Wholesale price on product pages</td><td>App block</td><td>Product template</td><td>Shows the customer's wholesale price and volume ladder on the product page.</td></tr>
+              <tr><td>Wholesale prices on collection pages</td><td>App embed</td><td>Collections, search, home</td><td>Adds a "Save X%" pill and wholesale price to product cards for signed-in wholesale buyers.</td></tr>
+              <tr><td>Wholesale prices in quick order lists</td><td>App embed</td><td>Bulk order pads</td><td>Adds each customer's wholesale price to rows of a theme's built-in "Quick order list" bulk pad.</td></tr>
+              <tr><td>Wholesale order minimum</td><td>App block</td><td>Cart template</td><td>A live progress bar toward the order minimum and next volume/spend tier.</td></tr>
+              <tr><td>Net-terms checkout button</td><td>App block</td><td>Cart template</td><td>Lets approved customers order on payment terms (Net 15/30/45/60) as a payment-pending draft order.</td></tr>
+            </tbody>
+          </table></div>
+
+          <p><strong>Quotes</strong></p>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Feature</th><th>Type</th><th>Placement</th><th>What it does</th></tr></thead>
+            <tbody>
+              <tr><td>Quote drawer <span class="badge">Required for quotes</span></td><td>App embed</td><td>Site-wide</td><td>The slide-out quote basket every "Add to quote" button opens.</td></tr>
+              <tr><td>Cart drawer quote button</td><td>App embed</td><td>Cart drawer</td><td>Adds "Request a quote" to a theme's slide-out cart drawer.</td></tr>
+              <tr><td>Add to quote on collection pages</td><td>App embed</td><td>Collections, search, home</td><td>A quote button on product cards, so buyers (guests too) build a quote while browsing.</td></tr>
+              <tr><td>Variant quantity matrix</td><td>App block</td><td>Product template</td><td>A bulk pad for multi-variant products — per-variant quantities, live pricing, add to quote in one tap.</td></tr>
+              <tr><td>My quotes</td><td>App block</td><td>Any page</td><td>A self-serve quote history for logged-in customers.</td></tr>
+            </tbody>
+          </table></div>
+
+          <p><strong>Catalog control</strong></p>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Feature</th><th>Type</th><th>Placement</th><th>What it does</th></tr></thead>
+            <tbody>
+              <tr><td>B2B catalog lock</td><td>App embed</td><td>Site-wide</td><td>Hides prices and Add to cart from non-wholesale visitors until they sign in / are approved.</td></tr>
+              <tr><td>Catalog visibility</td><td>App embed</td><td>Site-wide</td><td>Truly hides wholesale-only products and collections from non-wholesale shoppers.</td></tr>
+            </tbody>
+          </table></div>
+
+          <p><strong>Portal &amp; buyer tools</strong></p>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Feature</th><th>Type</th><th>Placement</th><th>What it does</th></tr></thead>
+            <tbody>
+              <tr><td>Wholesale portal page</td><td>App block</td><td>Any page</td><td>A branded wholesale landing page — login for guests, a personalized hub for members.</td></tr>
+              <tr><td>Wholesale application</td><td>App block</td><td>Any page</td><td>A wholesale signup form; approving auto-tags the customer.</td></tr>
+              <tr><td>Quick order form</td><td>App block</td><td>Any page</td><td>A fast bulk-order form (search or SKU, set quantities, add all at once).</td></tr>
+              <tr><td>Smart reorder</td><td>App block</td><td>Any page</td><td>One-tap reorder from a customer's recent orders.</td></tr>
+              <tr><td>Shopping lists</td><td>App block</td><td>Any page</td><td>Saved, reusable lists a buyer builds once and re-adds anytime.</td></tr>
+            </tbody>
+          </table></div>
+
+          <div class="callout">
+            <p><strong>Good to know.</strong> The cart order-minimum bar renders on
+              the <code>/cart</code> page, not inside a theme's slide-out cart
+              drawer. Keep only one copy of each embed enabled. The six "Any page"
+              blocks are designed to live on their own pages — create a page for
+              each and link them from your navigation or the wholesale portal.</p>
+          </div>
+        </section>
+
+        <!-- ============ PRICE LISTS ============ -->
+        <section id="price-lists">
+          <h2>Price lists</h2>
+          <p>A <strong>price list</strong> is the heart of Draper. It answers two
+            questions: <strong>who</strong> gets wholesale pricing, and
+            <strong>what</strong> their pricing is. Edit a list on a single page
+            (<strong>Price lists → open a list</strong>), organized in the order
+            the rules resolve: Details, Default pricing, Customer targeting, Volume
+            discounts, Order-value discounts, Collection pricing, Product
+            overrides, Quantity rules, Checkout terms, Shipping.</p>
+
+          <h3 id="who-gets-pricing">Who gets wholesale pricing</h3>
+          <p>Set this under <strong>Customer targeting</strong>. Two ways, usable
+            together:</p>
+          <ul>
+            <li><strong>By tag</strong> — any logged-in customer with a matching
+              tag (e.g. <code>wholesale</code>, <code>tier-1</code>) gets this
+              list's pricing. The <a href="#buyer-tools">wholesale application</a>
+              auto-tags on approval.</li>
+            <li><strong>Specific customers</strong> — search and select individual
+              customers by name, for named accounts that should get pricing
+              regardless of tags.</li>
+          </ul>
+          <p>A customer must be <strong>logged in</strong> to be recognized. Guests
+            never see wholesale pricing from a price list (only a
+            <a href="#discount-codes">discount code</a> can price a guest).</p>
+          <div class="callout">
+            <p>Seeing customer <strong>names</strong> in the picker requires the
+              "Protected customer fields (Name + Email)" permission. Targeting works
+              without it, but the picker falls back to IDs. See
+              <a href="#permissions">Permissions &amp; data</a>.</p>
+          </div>
+
+          <h3>Default pricing</h3>
+          <p>The list-wide discount — e.g. <strong>20% off retail</strong> — that
+            applies to every product a targeted customer buys, unless a more
+            specific rule overrides it.</p>
+
+          <h3>Product overrides</h3>
+          <p>Under <strong>Product overrides</strong>, set pricing for individual
+            products and variants, more specific than the list default:
+            <strong>percentage off</strong>, a <strong>fixed price</strong>,
+            <strong>per-variant</strong> pricing (via "Add variants"), and a
+            <strong>minimum quantity</strong> at which the override kicks in (a
+            pricing threshold, not an enforced limit).</p>
+
+          <h3 id="fixed-prices">Fixed prices are discount-only</h3>
+          <p>Draper applies wholesale pricing as a <strong>discount</strong>, so a
+            fixed price only takes effect when it's <strong>below</strong> the
+            item's retail price. A fixed price at or above retail is left as retail
+            — Draper never marks an item up. The editor warns you inline when a
+            fixed price is at/above retail so you can catch typos.</p>
+
+          <h3>Volume discounts</h3>
+          <p>Reward larger quantities with <strong>volume tiers</strong> — buy N or
+            more and the discount deepens (e.g. 5+ → 25% off, 10+ → 30% off).
+            Buyers see a <strong>live volume ladder</strong> on the product page and
+            "add 2 more to reach the next price" nudges in the cart. The best
+            qualifying tier applies automatically at checkout.</p>
+
+          <h3>Order-value discounts</h3>
+          <p>Reward larger <em>orders</em>: <strong>spend $X and get an extra Y%
+            off the whole order</strong>, stacked on top of per-line pricing (e.g.
+            spend $650 → 7% off, $1,200 → 12% off). The spend threshold is measured
+            on the <strong>retail subtotal</strong>, and the cart's bar becomes an
+            order-goals bar toward the next tier.</p>
+
+          <h3>Collection pricing</h3>
+          <p>Set <strong>one percentage off retail for every product in a
+            collection</strong>. Draper expands the collection to its products
+            <strong>when you save</strong> — a snapshot, so products added to the
+            collection later aren't included until you re-save the list.</p>
+
+          <h3 id="quantity-rules">Quantity rules</h3>
+          <p>Separate from pricing, <strong>Quantity rules</strong> enforce order
+            limits per product or variant at checkout: a <strong>minimum</strong>,
+            a <strong>maximum</strong>, or <strong>multiples of</strong> N (e.g.
+            cases of 6). Buyers see hints with a one-tap "fix to a valid quantity"
+            button; a variant rule beats a product rule. Adding to cart is never
+            blocked — the check happens at checkout (and on the net-terms path, so
+            buyers can't slip past through either route).</p>
+
+          <h3 id="list-priority">When a customer matches several lists</h3>
+          <p>A customer resolves to <strong>exactly one</strong> price list. When
+            more than one targets them:</p>
+          <ol>
+            <li><strong>Specific-customer targeting beats tag targeting.</strong></li>
+            <li>Within the same kind of match, the <strong>lower priority
+              number</strong> wins (<code>1</code> beats <code>2</code>;
+              <code>0</code> is highest). Ties fall back to the oldest list.</li>
+          </ol>
+          <p>The winning list's <strong>order minimum</strong> then gates that list
+            only. Below it, the buyer gets <strong>retail</strong> — Draper does not
+            fall through to a different, lower-priority list. So set minimums
+            deliberately.</p>
+
+          <h3>How the rules combine</h3>
+          <p>For a given product, Draper uses the <strong>most specific</strong>
+            rule available, in order: per-<strong>variant</strong> override →
+            per-<strong>product</strong> override → <strong>collection</strong>
+            pricing → best <strong>volume tier</strong> → list
+            <strong>default</strong>. Then, on top of the resulting line prices,
+            <strong>order-value discounts</strong> and <strong>free shipping</strong>
+            apply if the order qualifies.</p>
+
+          <h3>Active vs. draft &amp; bulk CSV</h3>
+          <p>Under <strong>Details</strong>, a list is <strong>Active</strong> or
+            <strong>Draft</strong>; only active lists apply, and new lists are
+            active by default. Set a list to Draft to pause it without deleting it.
+            For large catalogs you can <strong>import/export</strong> per-variant
+            pricing as CSV rather than editing rows by hand.</p>
+        </section>
+
+        <!-- ============ CHECKOUT TERMS ============ -->
+        <section id="checkout-terms">
+          <h2>Checkout terms &amp; shipping</h2>
+          <p>These settings live at the bottom of the price-list editor
+            (<strong>Checkout terms</strong> and <strong>Shipping</strong>) and
+            control how a wholesale customer pays, their order minimum, tax, and
+            shipping.</p>
+
+          <h3>Net payment terms</h3>
+          <p>Let approved customers <strong>buy now and pay later</strong> on terms
+            — Net 15, 30, 45, or 60 days. On the cart page, an approved customer
+            sees a <strong>Net terms</strong> button; clicking it places the order
+            as a <strong>draft order marked payment pending</strong> on the chosen
+            terms, and Shopify emails them the invoice. Turn on payment terms in
+            <strong>Checkout terms</strong> and add the Net-terms button block to
+            your Cart template.</p>
+          <div class="callout">
+            <p>The net-terms order runs through the <strong>same rules as a normal
+              checkout</strong> — wholesale line pricing, order-value discounts, the
+              order minimum, quantity rules, and free shipping all apply. It's a
+              genuine parallel checkout, not a shortcut around your rules. Net terms
+              is login-only; guests and code users can't use it.</p>
+          </div>
+
+          <h3>Order minimum</h3>
+          <ul>
+            <li>Measured on the <strong>retail subtotal — before wholesale
+              discounts</strong>, so a wholesale discount can't push a cart under
+              its own minimum.</li>
+            <li><strong>Adding to cart is never blocked.</strong> The minimum is
+              enforced at <strong>checkout</strong> (and on net terms), with a clear
+              message telling buyers how much more to add.</li>
+            <li>Wholesale customers see a <strong>live progress bar</strong> via the
+              order-minimum cart block.</li>
+          </ul>
+
+          <h3 id="tax-exempt">Tax-exempt automation</h3>
+          <p>Draper can set Shopify's <strong>native tax-exempt flag</strong> on a
+            customer, after which Shopify enforces $0 tax everywhere itself
+            (checkout, net-terms drafts, reports).</p>
+          <ul>
+            <li><strong>Per-list toggle</strong> — in Checkout terms, "Mark these
+              customers tax-exempt" marks the list's targeted customers on save.</li>
+            <li><strong>On approval</strong> — the
+              <a href="#buyer-tools">wholesale application</a> approve row has a
+              "Mark customer tax-exempt" checkbox, defaulting on when the
+              application included a Tax ID.</li>
+          </ul>
+          <div class="callout">
+            <p>It's a <strong>one-way switch by design</strong>: turning the toggle
+              off stops marking new customers exempt but doesn't un-exempt existing
+              ones (they may be exempt for other reasons). To reverse it, use the
+              <strong>"Remove exemption from matched customers"</strong> button. A
+              Tax ID field is evidence for your records — it never auto-exempts
+              anyone on its own.</p>
+          </div>
+
+          <h3 id="wholesale-shipping">Wholesale shipping</h3>
+          <p>Two independent mechanisms, both in the <strong>Shipping</strong>
+            section:</p>
+          <ul>
+            <li><strong>Free shipping</strong> — for the list, optionally above a
+              minimum order value (retail subtotal). Applies at checkout
+              <em>and</em> on net-terms orders.</li>
+            <li><strong>Rate customization</strong> — <strong>hide</strong>,
+              <strong>rename</strong>, or <strong>promote</strong> shipping rates,
+              matched by their displayed name (case-insensitive). Applies at
+              <strong>checkout only</strong> — net-terms customers still get free
+              shipping but not rate customization.</li>
+          </ul>
+        </section>
+
+        <!-- ============ DISCOUNT CODES ============ -->
+        <section id="discount-codes">
+          <h2>Discount codes</h2>
+          <p>A Draper <strong>discount code</strong> unlocks one price list's
+            wholesale pricing for <strong>anyone who enters it at checkout —
+            including guests</strong> with no account and no tags. It's the way to
+            give someone wholesale prices without tagging them first: a trade-show
+            handout, a "first order" code for a prospect, a rep ordering for
+            accounts.</p>
+
+          <h3>How it works</h3>
+          <ul>
+            <li>You attach a code to <strong>one price list</strong>. Entering it at
+              checkout applies that list's <strong>per-line wholesale pricing</strong>
+              (default %, product/variant overrides, volume tiers, collections).</li>
+            <li>It works for <strong>guests and logged-in non-members</strong>.</li>
+            <li>A code <strong>defers to an existing wholesale account</strong>: a
+              logged-in customer already on an active list keeps their own automatic
+              pricing (the code does nothing for them, and can't stack).</li>
+          </ul>
+
+          <h3>What a code does and doesn't grant</h3>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Granted by a code</th><th>Not granted by a code</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Per-line wholesale pricing (default, overrides, volume tiers, collections)</td>
+                <td>Quantity rules · Net payment terms · Free shipping / rate overrides</td>
+              </tr>
+            </tbody>
+          </table></div>
+          <p>The granted list's <strong>order minimum is respected</strong> — below
+            it the code is valid but not applicable (the same retail-subtotal gate
+            as automatic pricing). Quantity rules, net terms, and shipping overrides
+            are <strong>account-only</strong>.</p>
+
+          <h3>Create a code</h3>
+          <ol>
+            <li>Open the <strong>Discount codes</strong> page from the app
+              navigation.</li>
+            <li>Choose the <strong>price list</strong> the code should grant.</li>
+            <li>Enter a code (e.g. <code>TRADESHOW</code>) and an optional
+              <strong>usage limit</strong>.</li>
+            <li>Save — the code is live at checkout.</li>
+          </ol>
+          <p>Because a code carries a whole price list's rules, deleting and
+            recreating is the way to change what a code grants.</p>
+        </section>
+
+        <!-- ============ QUOTES ============ -->
+        <section id="quotes">
+          <h2>Quotes &amp; RFQ</h2>
+          <p>Quotes let a buyer assemble a basket and <strong>request
+            pricing</strong> instead of checking out. You review it, set prices, and
+            send it back; once accepted you convert it to an order and send the
+            invoice — all inside Shopify, no separate email or PDF tooling. Quotes
+            work for <strong>logged-in customers and guests</strong>.</p>
+
+          <div class="callout">
+            <p><strong>Turn it on first.</strong> Every quote entry point opens the
+              <strong>Quote drawer</strong> embed. If it's off, the buttons silently
+              do nothing — enable the Quote drawer embed before anything else.</p>
+          </div>
+
+          <h3>How buyers build a quote</h3>
+          <ul>
+            <li><strong>Product page</strong> — the "Add to quote" button (works for
+              guests too).</li>
+            <li><strong>Collection / search / home cards</strong> — a quote button
+              on each product card.</li>
+            <li><strong>Cart drawer</strong> — a "Request a quote" button.</li>
+            <li><strong>Variant quantity matrix</strong> — a bulk pad on
+              multi-variant products; set a quantity per variant and add them all at
+              once.</li>
+          </ul>
+          <p>The slide-out <strong>quote drawer</strong> is the buyer's basket. For
+            logged-in wholesale customers it shows a <strong>live estimate</strong> —
+            each line's wholesale price and savings, volume nudges, and progress
+            toward the order minimum. Submitting sends you the request.</p>
+
+          <h3>My quotes (buyer self-service)</h3>
+          <p>Add the <strong>My quotes</strong> block to a page and logged-in
+            customers get a quote history with status, expiry countdown, and totals.
+            They can <strong>accept</strong> a sent quote, <strong>decline</strong>,
+            or <strong>duplicate</strong> one (re-loading those items into the drawer,
+            re-priced). A buyer can't accept an expired quote.</p>
+
+          <h3>Managing quotes in the admin</h3>
+          <p>Open <strong>Quotes</strong> in the app navigation. Each quote's detail
+            page lets you review the request (lines, note, requested delivery date,
+            contact details), <strong>set per-line pricing</strong>, set an optional
+            <strong>expiry</strong>, and track <strong>status</strong> (requested →
+            draft → sent → accepted → converted / declined) on a history timeline.
+            You can also duplicate a quote.</p>
+
+          <h3>Send and convert</h3>
+          <ol>
+            <li><strong>Send</strong> the quote — the buyer sees it in <em>My
+              quotes</em> and can accept.</li>
+            <li><strong>Convert to an order</strong> — Draper creates a draft order
+              with your per-line pricing and sends the buyer a native Shopify
+              invoice.</li>
+          </ol>
+          <div class="callout">
+            <p>Conversion carries your exact per-line pricing onto the draft, so
+              <strong>the price the buyer accepted is the price they're
+              invoiced</strong> — down to the cent. Quantity rules are re-checked at
+              conversion, so a rule-violating quote can't become an unpayable
+              invoice.</p>
+          </div>
+        </section>
+
+        <!-- ============ CATALOG CONTROL ============ -->
+        <section id="catalog-control">
+          <h2>Catalog control</h2>
+          <p>Two independent features control what non-wholesale shoppers can see.
+            They can run together.</p>
+
+          <h3>B2B catalog lock</h3>
+          <p><strong>Hide prices and the Add to cart button</strong> from logged-out
+            or non-wholesale visitors until they sign in or are approved. Products
+            stay visible and browsable; only pricing and buying are gated. Enable
+            the <strong>B2B catalog lock</strong> app embed — it's site-wide, with
+            nothing to configure per product.</p>
+
+          <h3>Catalog visibility</h3>
+          <p><strong>Truly hide wholesale-only products and collections</strong> from
+            non-wholesale shoppers. Hidden items are removed from collection grids
+            and search, and their pages are gated on direct access. A viewer counts
+            as "wholesale" if their tags match an <strong>active price list</strong>,
+            so visibility stays in step with pricing.</p>
+          <ol>
+            <li>In the app admin, open <strong>Visibility</strong> and choose the
+              wholesale-only products/collections. Hiding a collection also hides its
+              member products everywhere.</li>
+            <li>Enable the <strong>Catalog visibility</strong> app embed.</li>
+          </ol>
+          <div class="callout">
+            <p>Shopify renders a listing page's <strong>"N results" count</strong> on
+              its servers, so after hiding items Draper replaces the now-inaccurate
+              count with a short note (wording is a setting). This is a
+              storefront/JavaScript layer, not a hard server-side boundary — hidden
+              items can still be reachable through channels Shopify controls (sitemap,
+              Storefront API). For hard catalog separation you'd need Shopify Plus /
+              native B2B.</p>
+          </div>
+
+          <h3>Which do I want?</h3>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Goal</th><th>Use</th></tr></thead>
+            <tbody>
+              <tr><td>Show the catalog to everyone, but hide prices/buying until login</td><td>Catalog lock</td></tr>
+              <tr><td>Hide certain products/collections from non-wholesale shoppers entirely</td><td>Catalog visibility</td></tr>
+              <tr><td>Both</td><td>Enable both embeds</td></tr>
+            </tbody>
+          </table></div>
+        </section>
+
+        <!-- ============ BUYER TOOLS ============ -->
+        <section id="buyer-tools">
+          <h2>Buyer tools</h2>
+          <p>Self-serve tools for wholesale buyers — a place to sign up, log in,
+            reorder, and order in bulk. Each is an app block you add to a page (see
+            <a href="#storefront-setup">Storefront setup</a>); a common pattern is
+            one page per tool, all linked from the wholesale portal.</p>
+
+          <h3>Wholesale portal</h3>
+          <p>A <strong>branded wholesale landing page</strong> that adapts to the
+            viewer: a login prompt for logged-out visitors, a personalized hub
+            (pricing at a glance + quick-action cards) for approved members, and an
+            apply prompt for signed-in non-members. It gates instantly on the
+            customer's tag, so the right state shows without a flash.</p>
+
+          <h3>Wholesale application</h3>
+          <p>A <strong>signup form</strong> for prospective wholesale customers —
+            name, email, phone, company, and optionally a <strong>Tax ID / VAT
+            number</strong>. Submissions land in <strong>Applications</strong>;
+            <strong>approving auto-tags the customer</strong> (putting them on any
+            matching price list) and offers to mark them tax-exempt.</p>
+
+          <h3>Quick order form</h3>
+          <p>A <strong>fast bulk-ordering form</strong>: search by name or
+            paste/upload SKUs (CSV supported), set quantities, and add everything at
+            once. Prices update <strong>live</strong> as quantities change, including
+            volume breaks and quantity-rule hints. A block setting chooses the mode:
+            add to <strong>cart</strong>, add to <strong>quote</strong>, or
+            <strong>both</strong>.</p>
+
+          <h3>Smart reorder</h3>
+          <p><strong>One-tap reordering</strong> from recent orders, each re-priced at
+            today's wholesale rates with a savings hook. Buyers can add a whole order
+            back to the cart or to a quote.</p>
+          <div class="callout">
+            <p>Reorder reads <strong>order history</strong>, which requires the
+              order-data permission. Without extended order access, Shopify only
+              exposes the <strong>last 60 days</strong>, so a buyer whose last order
+              is older sees an empty reorder hub — a Shopify limit, accepted for
+              launch.</p>
+          </div>
+
+          <h3>Shopping lists</h3>
+          <p><strong>Saved, reusable order templates.</strong> A buyer saves a cart as
+            a named list (e.g. <em>Monthly restock</em>) and re-adds it anytime,
+            re-priced at today's rates. Lists are <strong>per-customer</strong> and
+            read product data (not order history), so there's no 60-day limit.</p>
+        </section>
+
+        <!-- ============ FAQ ============ -->
+        <section id="faq" class="faq">
+          <h2>FAQ &amp; troubleshooting</h2>
+
+          <p class="faq-cat">"Nothing shows up" — setup</p>
+
+          <h3>I created a price list but wholesale customers still see retail prices</h3>
+          <p>Three things must all be true: (1) <strong>storefront pricing is
+            enabled</strong> — the Storefront health card should be green; (2) the
+            list is <strong>Active</strong>, not Draft; (3) the customer is
+            <strong>logged in and matched</strong> (tagged, or named in "Specific
+            customers"). Guests and logged-out customers always see retail.</p>
+
+          <h3>The wholesale price panel doesn't appear on product pages</h3>
+          <p>The <strong>Wholesale price on product pages</strong> block must be
+            added to your Product template and the theme saved, and the viewer must
+            be a logged-in, matched wholesale customer. The panel is intentionally
+            invisible to guests.</p>
+
+          <h3>"Add to quote" does nothing</h3>
+          <p>The <strong>Quote drawer</strong> embed isn't enabled. Every quote
+            button opens that drawer; without it they silently do nothing. Turn it on
+            in the App embeds panel and save.</p>
+
+          <h3>Badges or quote buttons don't show on collection pages</h3>
+          <p>Enable the matching embed (<strong>Wholesale prices on collection
+            pages</strong> for badges, <strong>Add to quote on collection
+            pages</strong> for buttons). Badges show only to logged-in wholesale
+            customers; quote buttons show to everyone. On a heavily customized theme,
+            product cards may use non-standard markup — contact support with your
+            theme name.</p>
+
+          <h3>The volume ladder is a static table, not interactive</h3>
+          <p>The <strong>live</strong> ladder needs the theme to expose a
+            <strong>quantity selector</strong> on the product page. Some themes don't
+            (e.g. a bulk "Quick order list" product page) — there, Draper shows a
+            static volume table and Add-to-quote uses quantity 1 (adjust in the
+            drawer). This is by design.</p>
+
+          <h3>The Net terms button or order-minimum bar is missing</h3>
+          <p>For Net terms: the customer must be on a list with net terms enabled and
+            logged in, and the <strong>Net-terms checkout button</strong> block must
+            be on your Cart template. The <strong>order-minimum bar</strong> block
+            also goes on the Cart template and renders on the <code>/cart</code> page,
+            not a slide-out cart drawer.</p>
+
+          <p class="faq-cat">Pricing behavior</p>
+
+          <h3>A fixed wholesale price isn't applying</h3>
+          <p>Pricing is <strong>discount-only</strong> — a fixed price only applies
+            when it's below retail. A fixed price at or above retail is ignored
+            (Draper never marks items up); the editor warns you inline. See
+            <a href="#fixed-prices">Fixed prices are discount-only</a>.</p>
+
+          <h3>A customer matches two price lists — which one applies?</h3>
+          <p>Exactly one wins: <strong>specific-customer targeting beats tag
+            targeting</strong>, then the <strong>lower priority number</strong> wins,
+            then the oldest list. See
+            <a href="#list-priority">When a customer matches several lists</a>.</p>
+
+          <h3>A tagged customer still sees retail</h3>
+          <p>Usually one of: they're <strong>not logged in</strong>; the winning
+            list's <strong>order minimum isn't met</strong> (below it the buyer gets
+            retail, with no fall-through to another list); or the list is
+            <strong>Draft</strong>.</p>
+
+          <h3>Is the order minimum the discounted or retail total?</h3>
+          <p>The <strong>retail subtotal, before wholesale discounts</strong> — so a
+            wholesale discount can't push a cart under its own minimum.</p>
+
+          <p class="faq-cat">Compatibility</p>
+
+          <h3>Does Draper work with my theme?</h3>
+          <p>Yes — Draper is built to work on <strong>any</strong> Shopify theme, not
+            just Dawn. Its storefront pieces use scoped styling and don't depend on
+            theme-specific code. On very customized themes an occasional piece may
+            need a tweak; email support with your theme name.</p>
+
+          <h3>Do I need Shopify Plus?</h3>
+          <p>No. Draper works on <strong>any paid Shopify plan</strong> and doesn't
+            require migrating to Shopify's B2B companies/catalogs.</p>
+
+          <h3>Does it work alongside other discounts?</h3>
+          <p>Draper's wholesale discount is applied by Shopify's discount engine and
+            is set <strong>not to stack</strong> with other product discounts on the
+            same line, so a customer gets their wholesale price rather than a
+            doubled-up discount. If you run other discount apps, test the combination
+            on a draft/test order.</p>
+
+          <p class="faq-cat">Billing &amp; data</p>
+
+          <h3>How much does Draper cost? Is there a free trial?</h3>
+          <p><strong>$29/month</strong> with a <strong>14-day free trial</strong>.
+            Every feature is included — no add-ons or usage fees. Billing is handled
+            by Shopify (Managed Pricing) on your normal invoice.</p>
+
+          <h3>What happens if I uninstall?</h3>
+          <p>Your subscription is cancelled and Draper's stored data for your shop is
+            erased (via Shopify's GDPR/uninstall webhooks). Your products, customers,
+            and orders in Shopify are untouched.</p>
+
+          <h3>Why does Draper need customer data? Why does the picker show IDs?</h3>
+          <p>To recognize who's wholesale (tags), let you target specific customers,
+            and power Smart reorder (recent orders). The customer picker shows IDs
+            until the <strong>Protected customer fields (Name + Email)</strong>
+            permission is approved. Full detail:
+            <a href="#permissions">Permissions &amp; data</a>.</p>
+
+          <p class="faq-cat">The Storefront health card</p>
+
+          <h3>What is it, and what does "Repair" do?</h3>
+          <p>The dashboard's <strong>Storefront health</strong> card runs read-only
+            checks on the pricing engine (discount/validation/shipping pieces
+            present, enabled, in sync). If it flags a problem, <strong>Repair
+            automatically</strong> re-creates or re-syncs the underlying pieces. It's
+            the first place to look if pricing suddenly stops applying. It can't check
+            theme embeds (those live in your theme), so it honestly says "not
+            checkable" for those.</p>
+        </section>
+
+        <!-- ============ PERMISSIONS ============ -->
+        <section id="permissions">
+          <h2>Permissions &amp; data</h2>
+          <p>Draper only asks for what it needs to run wholesale pricing, and handles
+            customer data carefully. For the formal document, see the
+            <a href="https://anikale.github.io/draper-legal/privacy-policy.html">privacy
+            policy</a>.</p>
+
+          <h3>What Draper can access, and why</h3>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Access</th><th>Why Draper needs it</th></tr></thead>
+            <tbody>
+              <tr><td>Products</td><td>Read your catalog and collections to build and apply pricing.</td></tr>
+              <tr><td>Customers (read &amp; write)</td><td>Recognize wholesale customers by tag, target specific customers, auto-tag approved applicants, and set the tax-exempt flag.</td></tr>
+              <tr><td>Orders (last 60 days)</td><td>Power the buyer Smart reorder tool. Read-only; Draper does not request full order history.</td></tr>
+              <tr><td>Draft orders</td><td>Create net-terms orders and convert quotes into orders.</td></tr>
+              <tr><td>Discounts</td><td>Apply wholesale pricing through Shopify's discount engine, and create discount codes.</td></tr>
+              <tr><td>Payment terms</td><td>Offer Net 15/30/45/60 on net-terms orders.</td></tr>
+              <tr><td>Validations</td><td>Enforce order minimums and quantity rules at checkout.</td></tr>
+              <tr><td>Delivery customizations</td><td>Apply wholesale free shipping and shipping-rate overrides.</td></tr>
+            </tbody>
+          </table></div>
+
+          <h3>Protected customer data</h3>
+          <p>Shopify classifies some customer fields as protected. Draper uses three,
+            each for a specific feature:</p>
+          <ul>
+            <li><strong>Customer tags</strong> — the core of the app; Draper resolves
+              which price list, net terms, and visibility a shopper gets from their
+              tags.</li>
+            <li><strong>Customer name + email</strong> — shown in the admin customer
+              search picker when you target specific customers. Read in-session and
+              <strong>not stored</strong>; targeting still works without it (falls
+              back to IDs).</li>
+            <li><strong>Recent orders (last 60 days)</strong> — power Smart reorder.
+              Read-only.</li>
+          </ul>
+
+          <h3>How your customers' data is handled</h3>
+          <ul>
+            <li><strong>Reads happen server-side</strong>, tied either to the
+              signed-in buyer on the storefront (through Shopify's signed app-proxy
+              identity — a buyer can never request another buyer's data) or to your
+              own admin session.</li>
+            <li>Draper <strong>stores only what a buyer submits</strong> — quote
+              requests, wholesale applications, and shopping lists — plus Shopify IDs
+              used for targeting.</li>
+            <li><strong>No customer data goes to third parties.</strong> Error
+              monitoring strips personal data and removes app-proxy query strings
+              (which carry buyer identity) from reports.</li>
+            <li>Buyer-facing responses are sent with <code>Cache-Control:
+              no-store</code>, so one buyer's data can't be shown to the next person
+              on a shared device.</li>
+          </ul>
+
+          <h3>Data deletion (GDPR / uninstall)</h3>
+          <p>Draper implements Shopify's mandatory privacy webhooks:
+            <code>customers/redact</code> deletes a specific customer's stored quotes,
+            applications, and shopping lists; <code>shop/redact</code> and
+            <code>app/uninstalled</code> delete all of your shop's stored Draper data.
+            Your Shopify products, customers, and orders are never touched by this —
+            only Draper's own stored records.</p>
+
+          <h3>Where data is hosted</h3>
+          <p>Draper runs on Railway with a US-hosted Postgres database. Subprocessors
+            are Shopify (platform), Railway (hosting), and Sentry (error monitoring,
+            with PII stripped). Full detail is in the
+            <a href="https://anikale.github.io/draper-legal/privacy-policy.html">privacy
+            policy</a>.</p>
+        </section>
+
+        <p class="footnote">Draper is an independent application and is not created,
+          endorsed, or supported by Shopify. Shopify is a trademark of Shopify Inc.
+          Need a hand? Email <a href="mailto:anikale@gmail.com">anikale@gmail.com</a>.</p>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      var sidebar = document.getElementById("sidebar");
+      var backdrop = document.querySelector(".backdrop");
+      var toggle = document.querySelector(".menu-toggle");
+
+      function closeMenu() {
+        sidebar.classList.remove("open");
+        backdrop.classList.remove("show");
+        toggle.setAttribute("aria-expanded", "false");
+      }
+      toggle.addEventListener("click", function () {
+        var open = sidebar.classList.toggle("open");
+        backdrop.classList.toggle("show", open);
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      });
+      backdrop.addEventListener("click", closeMenu);
+      sidebar.addEventListener("click", function (e) {
+        if (e.target.tagName === "A") closeMenu();
+      });
+
+      // Scrollspy: highlight the nav link for the section you're currently in.
+      // Deterministic (last section whose top has passed a line near the top of
+      // the viewport) — avoids the IntersectionObserver "which entry wins" race.
+      var links = Array.prototype.slice.call(
+        document.querySelectorAll(".nav a[href^='#']")
+      );
+      var byId = {};
+      links.forEach(function (a) {
+        byId[a.getAttribute("href").slice(1)] = a;
+      });
+      var sections = Array.prototype.slice.call(
+        document.querySelectorAll("main section[id]")
+      );
+      var activeId = null;
+      function syncActive() {
+        var line = 120; // px from the top of the viewport
+        var current = sections.length ? sections[0].id : null;
+        for (var i = 0; i < sections.length; i++) {
+          if (sections[i].getBoundingClientRect().top <= line) current = sections[i].id;
+          else break;
+        }
+        if (current === activeId) return;
+        activeId = current;
+        links.forEach(function (l) { l.classList.remove("active"); });
+        if (current && byId[current]) byId[current].classList.add("active");
+      }
+      var ticking = false;
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(function () {
+          syncActive();
+          ticking = false;
+        });
+      }
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll, { passive: true });
+      syncActive();
+    })();
+  </script>
+</body>
+</html>
